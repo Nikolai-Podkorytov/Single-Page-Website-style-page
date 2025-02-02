@@ -3,69 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Responsive Web App</title>
+    <title>Single Page Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
         }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-            color: #333;
-        }
-        main p {
-            font-size: 1.2em;
-            color: #666;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
+        header {
+            background-color: #4CAF50;
             color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            text-align: center;
+            padding: 10px 0;
         }
-        button:hover {
-            background-color: #0056b3;
+        nav {
+            background-color: #333;
+            overflow: hidden;
         }
-        footer p {
-            font-size: 0.8em;
-            color: #999;
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            float: left;
+        }
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            background-color: #111;
+        }
+        section {
+            padding: 20px;
+        }
+        @media (max-width: 600px) {
+            nav ul li {
+                float: none;
+            }
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Welcome to My Web App</h1>
-        </header>
-        <main>
-            <p>This is a simple and responsive single-page web application.</p>
-            <button id="myButton">Click Me</button>
-        </main>
-        <footer>
-            <p>&copy; 2025 My Web App</p>
-        </footer>
-    </div>
     <script>
-        document.getElementById('myButton').addEventListener('click', function() {
-            alert('Button was clicked!');
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
         });
     </script>
+</head>
+<body>
+    <header>
+        <h1>Single Page Website</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="home">
+        <h2>Home</h2>
+        <p>Welcome to our single page website!</p>
+    </section>
+    <section id="about">
+        <h2>About</h2>
+        <p>Learn more about us and what we do.</p>
+    </section>
+    <section id="services">
+        <h2>Services</h2>
+        <p>Discover the services we offer.</p>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Get in touch with us.</p>
+    </section>
 </body>
 </html>
